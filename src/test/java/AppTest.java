@@ -68,7 +68,6 @@ public class AppTest extends FluentTest {
     click("a", withText("Add a new task"));
     fill("#description").with("Deposit paycheck");
     submit(".btn");
-    click("a", withText("View all tasks"));
     assertThat(pageSource()).contains("Deposit paycheck");
   }
 }
