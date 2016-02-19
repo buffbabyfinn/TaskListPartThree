@@ -96,6 +96,8 @@ public class App {
     post("/tasks", (request, response) ->{
       HashMap<String, Object> model = new HashMap<String, Object>();
 
+      request.session().attribute("name");
+
       Category category = Category.find(Integer.parseInt(request.queryParams("categoryId")));
       ArrayList<Task> tasks = category.getTasks();
 
@@ -108,10 +110,11 @@ public class App {
       Task newTask = new Task(description);
 
       tasks.add(newTask);
+      
 
       model.put("tasks", tasks);
       model.put("category", category);
-      model.put("template", "templates/category-tasks-form.vtl");
+      model.put("template", "templates/category.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
   }
